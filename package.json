@@ -1,0 +1,36 @@
+{
+  "name": "classic.group",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch & nodemon dist",
+    "test": "tsc && mocha dist/**/*.spec.js",
+    "lint": "eslint src --ext ts",
+    "tsc": "./node_modules/typescript/bin/tsc",
+    "docker": "docker build -t socks . && docker run -p 49160:3001 socks"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^10.3.1",
+    "chai": "^4.1.2",
+    "express": "^4.16.3",
+    "tsc": "^1.20150623.0",
+    "typescript": "^2.9.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "mocha": "^5.2.0",
+    "tslint": "^5.10.0",
+    "typescript-eslint-parser": "^16.0.0"
+  }
+}
