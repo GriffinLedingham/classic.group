@@ -54,6 +54,7 @@ class GenericFinder {
                     break
                 }
             }
+            if(group != null) break
         }
         return group
     }
