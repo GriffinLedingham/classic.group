@@ -1,0 +1,18 @@
+<form hidden id="dungeon_queue_form" action="/find/dungeon" method="post">
+    <input hidden type="text" placeholder="Name" name="name" id="name" value="{{name}}" />
+    <input hidden type="text" placeholder="Level" name="level" id="level" value="{{level}}"/>
+    <input hidden type="text" placeholder="Realm" name="realm" id="realm" value="{{realm}}"/>
+    <input hidden type="text" placeholder="Dungeon" name="dungeon" id="dungeon" value="{{dungeon}}"/>
+
+    <input hidden type="submit">
+</form>
+
+<script>
+    setTimeout(function() {
+        document.getElementById("dungeon_queue_form").submit()
+    },1000)
+</script>
+
+<div>
+    {{response}}
+</div>
