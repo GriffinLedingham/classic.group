@@ -32,7 +32,7 @@
 <div class="title-header">
     CLASSIC.GROUP
 </div>
-<form id="dungeon_finder_form" action="/dungeon/find" method="post">
+<form id="dungeon_finder_form" action="/find" method="post">
     <div class="input-wrapper">
         <div>
             <input type="text" placeholder="Name" name="name" id="name" value="{{name}}" {{#name}}readonly{{/name}} />
@@ -115,7 +115,7 @@
     <br>
     {{#name}}
         <div>
-            <a class="switch-button" href="/dungeon/switch">Switch Character</a>
+            <a class="switch-button" href="/switch">Switch Character</a>
         </div>
     {{/name}}
     <input class="submit-button" type="submit" value="Queue Up">

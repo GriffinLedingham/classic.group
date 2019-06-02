@@ -1,16 +1,17 @@
 <script>
     setTimeout(function() {
         location.reload()
-    },1000)
+    },5000)
 </script>
 
 <div style="margin-top:140px;">
     <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     <div class="group-response">{{response}}</div>
     <br><br>
-    <div class="group-response">Current Queue: {{current}}</div>
-
+    <div class="group-response">Tanks In Queue: {{currentTank}}</div>
+    <div class="group-response">Heals In Queue: {{currentHeal}}</div>
+    <div class="group-response">DPS In Queue: {{currentDPS}}</div>
     <div>
-        <a class="switch-button" href="/dungeon/switch">Leave Queue</a>
+        <a class="switch-button" href="/switch">Leave Queue</a>
     </div>
 </div>

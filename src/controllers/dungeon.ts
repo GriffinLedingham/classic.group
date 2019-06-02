@@ -2,9 +2,7 @@ import DungeonFinder  from '../finder/dungeon/dunegonFinder'
 import Player         from '../player/player'
 
 const DungeonController = {
-  index:    (req, res) : void => {},
-
-  find:  (req, res) => {
+  index:    (req, res) => {
     if(req.method == 'GET') {
       return findGET(req, res)
     }
@@ -13,8 +11,12 @@ const DungeonController = {
     }
     else {
       res.status(404)
-      return 'Not found'
+      res.render('404', {})
     }
+  },
+
+  find:  (req, res) => {
+    DungeonController.index(req, res)
   },
 
   queue: (req, res, response: string = null, name = null, level = null, realm = null, key = null) => {
@@ -49,7 +51,7 @@ function findGET(req, res) {
   }
   else if(name != undefined && level != undefined && realm != undefined && key != undefined && player != undefined && group == undefined ) {
     // Display the user's current queue
-    return DungeonController.queue(req, res, `You are in the ${key} queue! There are ${DungeonFinder.getQueueLength(key, realm)} players in the queue.`)
+    return DungeonController.queue(req, res, `You are in the ${key} queue`)
   }
   else {
     // Display dungeon finder landing
@@ -117,7 +119,9 @@ function queueGET(req, res, response: string = null, name = null, level = null, 
   if(name != undefined && level != undefined && realm != undefined && key != undefined) {
     return res.render('dungeonQueue', {
       response: response,
-      current:  DungeonFinder.getQueueLength(key, realm),
+      currentDPS: DungeonFinder.getRoleFilteredQueues('dps', key, realm).length,
+      currentHeal: DungeonFinder.getRoleFilteredQueues('heal', key, realm).length,
+      currentTank: DungeonFinder.getRoleFilteredQueues('tank', key, realm).length,
       dungeon: key,
       name: name,
       level: level,
@@ -204,7 +208,7 @@ function leaveGET(req, res, groupId: string) {
   res.clearCookie("group");
 
   // Display dungeon finder landing
-  return '<script>location.href = \'/dungeon/find\';</script>';
+  return '<script>location.href = \'/\';</script>';
 }
 
 function switchGET(req, res) {
@@ -220,7 +224,7 @@ function switchGET(req, res) {
   res.clearCookie("level");
 
   // Display dungeon finder landing
-  return '<script>location.href = \'/dungeon/find\';</script>';
+  return '<script>location.href = \'/\';</script>';
 }
 
 export default DungeonController
