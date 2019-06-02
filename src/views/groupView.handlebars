@@ -1,3 +1,64 @@
 <div>
-    {{response}}
+    <div class="group-response">{{response}}</div>
+    <div class="role-header">Group ID</div>
+    <a href="/dungeon/group/{{groupId}}" class="group-id">#{{shortId}}</a>
+
+    <div class="dungeon-header">
+        {{dungeon}}
+    </div>
+
+    <div>
+        <div class="role-header">Tank</div>
+        <div class="player-row">
+            <span class="leader">👑</span><div class="role-player {{tank.class}}">{{tank.name}}</div>
+            <span class="pst-player" onclick="setClipboard('/whisper {{tank.name}} [CLASSIC.GROUP] Hello  please join my {{dungeon}} group!')">💬</span>
+            <span class="inv-player" onclick="setClipboard('/invite {{tank.name}}')">👥</span>
+        </div>
+    </div>
+    <div>
+        <div class="role-header">Heal</div>
+        <div class="player-row">
+            <div class="role-player {{heal.class}}">{{heal.name}}</div>
+            <span class="pst-player" onclick="setClipboard('/whisper {{heal.name}} [CLASSIC.GROUP] Hello  please join my {{dungeon}} group!')">💬</span>
+            <span class="inv-player" onclick="setClipboard('/invite {{heal.name}}')">👥</span>
+        </div>
+    </div>
+    <div class="role-header">DPS</div>
+    <div>
+        <div class="player-row">
+            <div class="role-player {{dpsA.class}}">{{dpsA.name}}</div>
+            <span class="pst-player" onclick="setClipboard('/whisper {{dpsA.name}} [CLASSIC.GROUP] Hello  please join my {{dungeon}} group!')">💬</span>
+            <span class="inv-player" onclick="setClipboard('/invite {{dpsA.name}}')">👥</span>
+        </div>
+    </div>
+    <div>
+        <div class="player-row">
+            <div class="role-player {{dpsB.class}}">{{dpsB.name}}</div>
+            <span class="pst-player" onclick="setClipboard('/whisper {{dpsB.name}} [CLASSIC.GROUP] Hello  please join my {{dungeon}} group!')">💬</span>
+            <span class="inv-player" onclick="setClipboard('/invite {{dpsB.name}}')">👥</span>
+        </div>
+    </div>
+    <div>
+        <div class="player-row">
+            <div class="role-player {{dpsC.class}}">{{dpsC.name}}</div>
+            <span class="pst-player" onclick="setClipboard('/whisper {{dpsC.name}} [CLASSIC.GROUP] Hello  please join my {{dungeon}} group!')">💬</span>
+            <span class="inv-player" onclick="setClipboard('/invite {{dpsC.name}}')">👥</span>
+        </div>
+    </div>
+
+    <a class="leave-button" href="/dungeon/leave/{{groupId}}">Leave Group</a>
 </div>
+
+<script>
+    function setClipboard(value) {
+        var tempInput = document.createElement("input");
+        tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+        tempInput.value = value;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        if(value.indexOf('/invite') != -1) alert('Invite code copied!')
+        if(value.indexOf('/whisper') != -1) alert('Whisper code copied!')
+    }
+</script>

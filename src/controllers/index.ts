@@ -1,7 +1,7 @@
-import find from './find'
+import dungeon from './dungeon'
 
 const controllers = {
-    find,
+    dungeon,
 }
 
 export default controllers

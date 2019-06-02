@@ -1,16 +1,20 @@
 import Player from "../player/player"
 
 class Queue {
-    public players: Array<Player>
+    public players: {[key: string]: Player}
     public locked:  boolean
 
     constructor(players = []) {
-        this.players    = players
+        this.players    = {}
+        for(let i in players) {
+            this.players[players[i].id] = players[i]
+        }
+
         this.locked     = false
     }
 
     getLength() {
-        return this.players.length
+        return Object.keys(this.players).length
     }
 
     isLocked() {
@@ -26,14 +30,40 @@ class Queue {
     }
 
     filterByLevel(level, levelDeviation) {
-        return this.players.filter( player => (player.level > level - levelDeviation) && (player.level < level + levelDeviation) )
+        let filterPlayers = []
+
+        for(let i in this.players) {
+            let player = this.players[i]
+            if((player.level > level - levelDeviation) && (player.level < level + levelDeviation))
+                filterPlayers.push(player)
+        }
+
+        return filterPlayers
+    }
+
+    filterByRole(role) {
+
+        let filterPlayers = []
+
+        for(let i in this.players) {
+            let player = this.players[i]
+            if(player.role.toLowerCase() == role.toLowerCase())
+                filterPlayers.push(player)
+        }
+
+        return filterPlayers
     }
 
     addPlayer(player: Player) {
-        this.players.push(player)
+        this.players[player.id] = player
     }
 
-    removePlayersFromQueue(level: number, levelDeviation: number, count: number) : Array<Player> {
+    removePlayer(playerId: string) {
+        if(this.players.hasOwnProperty(playerId))
+            delete this.players[playerId]
+    }
+
+    removePlayersFromQueueByLevel(level: number, levelDeviation: number, count: number) : Array<Player> {
         let removedPlayers  = []
         let removedIds      = []
         let filterPlayers = this.filterByLevel(level, levelDeviation)
@@ -42,13 +72,34 @@ class Queue {
             removedIds.push(filterPlayers[i].id)
             if(removedPlayers.length >= count) break
         }
-        for(let i = this.players.length - 1; i >= 0; i--) {
-            if(removedIds.indexOf(this.players[i].id) != -1) {
-                removedIds.splice(removedIds.indexOf(this.players[i].id), 1)
-                this.players.splice(i,1)
-            }
-            if(removedIds.length == 0)
-                break
+        for(let i in removedIds) {
+            delete this.players[removedIds[i]]
+        }
+        return removedPlayers
+    }
+
+    removePlayerFromQueue(playerId: string) : boolean {
+        let result = false
+
+        if(this.players.hasOwnProperty(playerId)) {
+            delete this.players[playerId]
+            result = true
+        }
+
+        return result
+    }
+
+    removePlayersFromQueueByRole(role: string, count: number) : Array<Player> {
+        let removedPlayers  = []
+        let removedIds      = []
+        let filterPlayers = this.filterByRole(role)
+        for(let i in filterPlayers) {
+            removedPlayers.push(filterPlayers[i])
+            removedIds.push(filterPlayers[i].id)
+            if(removedPlayers.length >= count) break
+        }
+        for(let i in removedIds) {
+            delete this.players[removedIds[i]]
         }
         return removedPlayers
     }

@@ -1,8 +1,122 @@
-<form id="dungeon_finder_form" action="/find/dungeon" method="post">
-    <input type="text" placeholder="Name" name="name" id="name" />
-    <input type="text" placeholder="Level" name="level" id="level" />
-    <input type="text" placeholder="Realm" name="realm" id="realm" />
-    <input type="text" placeholder="Dungeon" name="dungeon" id="dungeon" />
+{{!-- <div>
+    <div class="header-wrapper">
+        <div class="header-deco-below"></div>
+        <div class="header-deco"></div>
+        <div class="header-logo"></div>
+        <div class="parchment-top"></div>
+    </div>
+    <div class="parchment">
+        <div class="parchment-inner-bg">
+            <div>
+                <div class="parchment-inner-bg-top"></div>
+                <div class="parchment-inner-bg-left"></div>
+                <div class="parchment-inner-bg-top-left"></div>
+                <div class="parchment-inner-bg-right"></div>
+                <div class="parchment-inner-bg-top-right"></div>
 
-    <input type="submit">
+            </div>
+            <div>
+                <div class="parchment-title">
+                    Group Finder
+                </div>
+                <div class="input-wrapper">
+                    <div>
+                        <input />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="title-header">
+    CLASSIC.GROUP
+</div>
+<form id="dungeon_finder_form" action="/dungeon/find" method="post">
+    <div class="input-wrapper">
+        <div>
+            <input type="text" placeholder="Name" name="name" id="name" value="{{name}}" {{#name}}readonly{{/name}} />
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="input-wrapper">
+        <div>
+            <input type="number" class="number-input" value="30" min="1" max="60" placeholder="Level" name="level" id="level" value="{{level}}" {{#level}}readonly{{/level}}/>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="input-wrapper">
+        <div>
+            <select type="text" placeholder="Realm" name="realm" id="realm" value="{{realm}}" {{#realm}}readonly{{/realm}}>
+                <option>Classic Beta PvP</option>
+                <option>Classic Beta PvE</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="input-wrapper">
+        <div>
+            <select type="text" placeholder="Class" name="class" id="class">
+                <option>Druid</option>
+                <option>Hunter</option>
+                <option>Mage</option>
+                <option>Paladin</option>
+                <option>Priest</option>
+                <option>Rogue</option>
+                <option>Shaman</option>
+                <option>Warlock</option>
+                <option>Warrior</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="input-wrapper">
+        <div>
+            <select type="text" placeholder="Role" name="role" id="role">
+                <option>Tank</option>
+                <option>Heal</option>
+                <option>DPS</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="input-wrapper">
+        <div>
+            <select type="text" placeholder="Dungeon" name="dungeon" id="dungeon">
+                <option value="Deadmines">Deadmines</option>
+                <option value="Ragefire Chasm">Ragefire Chasm</option>
+                <option value="Wailing Caverns">Wailing Caverns</option>
+                <option value="Shadowfang Keep">Shadowfang Keep</option>
+                <option value="Blackfathom Deeps">Blackfathom Deeps</option>
+                <option value="Stormwind Stockade">Stormwind Stockade</option>
+                <option value="Gnomeregan">Gnomeregan</option>
+                <option value="Scarlet Halls">Scarlet Halls</option>
+                <option value="Scarlet Monastery">Scarlet Monastery</option>
+                <option value="Maraudon">Maraudon</option>
+                <option value="Razorfen Kraul">Razorfen Kraul</option>
+                <option value="Razorfen Downs">Razorfen Downs</option>
+                <option value="Dire Maul">Dire Maul</option>
+                <option value="Scholomance">Scholomance</option>
+                <option value="Uldaman">Uldaman</option>
+                <option value="Stratholme">Stratholme</option>
+                <option value="Zul'Farrak">Zul'Farrak</option>
+                <option value="Blackrock Depths">Blackrock Depths</option>
+                <option value="Sunken Temple">Sunken Temple</option>
+                <option value="Lower Blackrock Spire">Lower Blackrock Spire</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <br>
+    {{#name}}
+        <div>
+            <a class="switch-button" href="/dungeon/switch">Switch Character</a>
+        </div>
+    {{/name}}
+    <input class="submit-button" type="submit" value="Queue Up">
 </form>

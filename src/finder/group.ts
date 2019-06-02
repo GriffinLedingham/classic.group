@@ -3,22 +3,33 @@ import * as UUID    from 'uuid/v4'
 
 class Group {
     public id:      string
+    public ts:      number
     public key:     string
     public level:   number
     public players: Array<Player>
 
-    public leader:  Player
-    public plebs:   Array<Player>
-
-    constructor(key: string, level: number, players: Array<Player>) {
+    constructor(key: string, players: Array<Player>) {
         this.id         = UUID()
-
+        this.ts         = +new Date()
         this.key        = key
-        this.level      = level
         this.players    = players
+    }
 
-        this.leader     = players[0]
-        this.plebs      = players.slice(1,players.length)
+    public getLeader() {
+        return this.players[0]
+    }
+
+    public getPlebs() {
+        return this.players.slice(1,this.players.length)
+    }
+
+    public removePlayer(playerId: string) {
+        for(let i in this.players) {
+            if(this.players[i].id == playerId) {
+                this.players.splice(parseInt(i),1)
+                break
+            }
+        }
     }
 }
 

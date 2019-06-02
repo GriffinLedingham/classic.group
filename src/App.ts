@@ -6,6 +6,8 @@ import GroupFinder    from './finder/group/groupFinder'
 import Player         from './player/player'
 import * as exphbs    from 'express-handlebars'
 import * as bodyParser from 'body-parser'
+import * as cookieParser from 'cookie-parser'
+
 
 class App {
   public express
@@ -14,18 +16,13 @@ class App {
 
   constructor() {
     this.express = express()
-    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(express.static('static'));
+    this.express.use(bodyParser.urlencoded({ extended: true }))
+    this.express.use(cookieParser())
     this.express.engine('handlebars', exphbs())
     this.express.set('view engine', 'handlebars')
     this.express.set('views', path.join(__dirname, '/../src/views'))
-
     this.mountRoutes()
-
-    let player1 = new Player('griffin', 5, 'Ravenholdt')
-    let player2 = new Player('bob', 4, 'Ravenholdt')
-
-    DungeonFinder.addPlayerToQueue('deadmines', player1)
-    DungeonFinder.addPlayerToQueue('deadmines', player2)
   }
 
   private mountRoutes() : void {
