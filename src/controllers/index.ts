@@ -71,6 +71,8 @@ function findPOST(req, res) {
   const role        = req.body.role
   const playerClass = req.body.class
 
+  if(name == '') return res.render('findDungeon', {})
+
   let player = DungeonFinder.getPlayer(key, name, level, realm, role, playerClass)
 
   res.cookie('name',    name,       { maxAge: 900000, httpOnly: true });
