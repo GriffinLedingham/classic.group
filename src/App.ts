@@ -1,12 +1,12 @@
-import * as express   from 'express'
-import * as path      from 'path'
-import routes         from './routes'
-import DungeonFinder  from './finder/dungeon/dunegonFinder'
-import GroupFinder    from './finder/group/groupFinder'
-import Player         from './player/player'
-import * as exphbs    from 'express-handlebars'
-import * as bodyParser from 'body-parser'
-import * as cookieParser from 'cookie-parser'
+import * as express       from 'express'
+import * as path          from 'path'
+import routes             from './routes'
+import DungeonFinder      from './finder/dungeon/dunegonFinder'
+import GroupFinder        from './finder/group/groupFinder'
+import Player             from './player/player'
+import * as exphbs        from 'express-handlebars'
+import * as bodyParser    from 'body-parser'
+import * as cookieParser  from 'cookie-parser'
 
 
 class App {

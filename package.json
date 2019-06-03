@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch & nodemon dist",
-    "test": "tsc && mocha dist/**/*.spec.js",
     "lint": "eslint src --ext ts",
     "tsc": "./node_modules/typescript/bin/tsc",
     "docker": "docker build -t socks . && docker run -p 49160:3001 socks"

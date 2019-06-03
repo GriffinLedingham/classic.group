@@ -1,5 +1,16 @@
+/*
+ *
+ * This file is pretty overkill. I originally had controllers
+ * broken out and separate, but decided to chuck it all in an
+ * index controller.
+ *
+ * All this really does now is do some fancy parameter catching
+ * to pass into the controller.
+ *
+ */
+
 import { Router } from 'express'
-import controllers from '../controllers'
+import indexController from '../controllers/index'
 
 function notFound(res) {
   res.status(404)
@@ -10,16 +21,16 @@ function routes(controller, paramString, req, res) {
   let result = ''
   if (paramString.length > 0) {
     const params = paramString.split('/')
-    if (controllers[controller] === undefined
-        || controllers[controller][params[0]] === undefined) {
+    if (indexController === undefined
+        || indexController[params[0]] === undefined) {
       return notFound(res)
     } else {
-      result = controllers[controller][params[0]](req, res, ...params.slice(1, Object.keys(params).length))
+      result = indexController[params[0]](req, res, ...params.slice(1, Object.keys(params).length))
     }
-  } else if (controllers[controller] === undefined) {
+  } else if (indexController === undefined) {
     return notFound(res)
   } else {
-    result = controllers[controller].index(req, res)
+    result = indexController.index(req, res)
   }
   return result
 }
@@ -27,10 +38,10 @@ function routes(controller, paramString, req, res) {
 const router = Router()
 router.all('/*?', (req, res) => {
   if (req.params['0'] === undefined) {
-    const result = routes('dungeon', '', req, res)
+    const result = routes('index', '', req, res)
     if(result != undefined) res.send(result)
   } else {
-    const result = routes('dungeon', req.params['0'], req, res)
+    const result = routes('index', req.params['0'], req, res)
     if(result != undefined) res.send(result)
   }
 })
