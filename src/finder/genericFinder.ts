@@ -76,18 +76,7 @@ class GenericFinder {
         player.setQueueKey(key)
         this.players[player.id] = (player)
 
-        for(let i in this.queues) {
-            let realmQueues = this.queues[i]
-            for(let j in realmQueues) {
-                console.log(`${i} - ${j} Queue: ${realmQueues[j].getLength()}`)
-            }
-        }
-        for(let i in this.groups) {
-            let realmGroups = this.groups[i]
-            for(let j in realmGroups) {
-                console.log(`${i} - ${j} Groups: ${Object.keys(realmGroups[j]).length}`)
-            }
-        }
+        console.log(`Added player ${player.name} to ${key} on ${player.realm}`)
 
         if(this.canAssembleGroup(key, player.level, player.realm))
             this.doAssembleGroup(key, player.realm)
