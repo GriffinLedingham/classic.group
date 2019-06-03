@@ -21,7 +21,7 @@ class Player {
         this.playerClass  = playerClass
     }
 
-    setQueueKey(key) {
+    setQueueKey(key: string) {
         this.queueKey = key
     }
 
@@ -29,7 +29,7 @@ class Player {
         this.queueKey = null
     }
 
-    setGroupId(id) {
+    setGroupId(id: string) {
         this.groupId = id
     }
 

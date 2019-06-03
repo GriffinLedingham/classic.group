@@ -110,7 +110,7 @@ class GenericFinder {
         return group
     }
 
-    public getQueueLength(key, realm) : number {
+    public getQueueLength(key: string, realm: string) : number {
         if(!this.queues.hasOwnProperty(realm) || !this.queues[realm].hasOwnProperty(key)) return 0
         return this.queues[realm][key].getLength()
     }

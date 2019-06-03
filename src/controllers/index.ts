@@ -1,5 +1,4 @@
 import DungeonFinder  from '../finder/dungeon/dunegonFinder'
-import Player         from '../player/player'
 
 const IndexController = {
   index:    (req, res) => {

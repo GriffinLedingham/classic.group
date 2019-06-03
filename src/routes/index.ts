@@ -17,7 +17,7 @@ function notFound(res) {
   res.render('404', {})
 }
 
-function routes(controller, paramString, req, res) {
+function routes(paramString, req, res) {
   let result = ''
   if (paramString.length > 0) {
     const params = paramString.split('/')
@@ -38,10 +38,10 @@ function routes(controller, paramString, req, res) {
 const router = Router()
 router.all('/*?', (req, res) => {
   if (req.params['0'] === undefined) {
-    const result = routes('index', '', req, res)
+    const result = routes('', req, res)
     if(result != undefined) res.send(result)
   } else {
-    const result = routes('index', req.params['0'], req, res)
+    const result = routes(req.params['0'], req, res)
     if(result != undefined) res.send(result)
   }
 })
