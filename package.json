@@ -18,7 +18,7 @@
     "chai": "^4.1.2",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.3",
-    "express-handlebars": "^3.1.0",
+    "express-handlebars": "^5.3.1",
     "pug": "^2.0.3",
     "tsc": "^1.20150623.0",
     "typescript": "^2.9.1",
